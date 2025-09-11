@@ -3,6 +3,7 @@
   <head>
     <title>Calculator Modes with Theme</title>
     <style>
+      /* General Page Style */
       body {
         font-family: Arial, sans-serif;
         display: flex;
@@ -10,37 +11,37 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        transition: background 0.3s, color 0.3s;
+        transition: background 0.3s, color 0.3s; /* Smooth theme change */
       }
 
-      /* Conversion Calculator Box */
-#conversion {
-  color: white;
-  text-align: center;
-}
+      /* Conversion Calculator Box Styling */
+      #conversion {
+        color: white;
+        text-align: center;
+      }
 
-#conversion .conversion-box {
-  margin: 15px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+      #conversion .conversion-box {
+        margin: 20px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-#conversion label {
-  margin: 5px 0;
-  font-size: 16px;
-}
+      #conversion label {
+        margin: 10px 0;
+        font-size: 16px;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      }
 
-#conversion input {
-  width: 80%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: none;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 16px;
-}
-
+      #conversion input {
+        width: 80%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 10px;
+        text-align: left;
+        font-size: 16px;
+      }
 
       /* Dark Mode (Default) */
       body.dark {
@@ -48,12 +49,13 @@
         color: rgb(200, 191, 191);
       }
 
+      /* Light Mode */
       body.light {
         background: linear-gradient(135deg, #7facf4, #e6e6e6);
         color: rgb(41, 40, 40);
       }
 
-      /* Top Buttons */
+      /* Mode Buttons at Top */
       .mode-buttons {
         margin-bottom: 20px;
       }
@@ -74,7 +76,7 @@
 
       /* Calculator Box */
       .calculator {
-        background: #1c1c1c;
+        background: linear-gradient(135deg, #707070, #202020);
         padding: 20px;
         border-radius: 30px;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
@@ -82,12 +84,15 @@
         transition: background 0.1s;
       }
 
+      /* Light Mode Calculator Style */
       body.light .calculator {
         background: #cecdcd;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
       }
-            #sciDisplay {
-         width: 90%;
+
+      /* Scientific Calculator Display */
+      #sciDisplay {
+        width: 95%;
         height: 80px;
         background: #000;
         border: none;
@@ -98,15 +103,14 @@
         padding: 10px;
         margin-bottom: 20px;
         transition: background 0.3s, color 0.3s;
-        }
-
-        body.light  #sciDisplay {
+      }
+      body.light #sciDisplay {
         background: #fff;
         color: black;
         border: 1px solid #ccc;
       }
 
-
+      /* Basic Calculator Display */
       #display {
         width: 90%;
         height: 80px;
@@ -120,19 +124,20 @@
         margin-bottom: 20px;
         transition: background 0.3s, color 0.3s;
       }
-
       body.light #display {
         background: #fff;
         color: black;
         border: 1px solid #ccc;
       }
 
+      /* Calculator Buttons Grid Layout */
       .buttons {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 10px;
       }
 
+      /* Calculator Buttons Style */
       .buttons button {
         height: 60px;
         border: none;
@@ -143,12 +148,12 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
         transition: transform 0.2s, background 0.3s, color 0.3s;
       }
-
       .buttons button:active {
-        transform: scale(0.9);
+        transform: scale(0.75);
+        background-color: #444;
       }
 
-      /* Colors */
+      /* Button Colors */
       .btn-gray {
         background: #a5a5a5;
         color: black;
@@ -161,12 +166,12 @@
         background: #333333;
         color: white;
       }
-
       body.light .btn-dark {
         background: #ddd;
         color: black;
       }
 
+      /* Zero Button (Spans 2 columns) */
       .zero {
         grid-column: span 2;
         border-radius: 30px;
@@ -181,7 +186,7 @@
     </style>
   </head>
   <body class="dark">
-    <!-- Top Buttons -->
+    <!-- Top Mode & Theme Buttons -->
     <div class="mode-buttons">
       <button onclick="showMode('basic')">Basic</button>
       <button onclick="showMode('scientific')">Scientific</button>
@@ -193,176 +198,199 @@
     <div class="calculator" id="basic">
       <input type="text" id="display" disabled />
       <div class="buttons">
+        <!-- Row 1 -->
         <button class="btn-gray" onclick="clearDisplay()">C</button>
         <button class="btn-gray" onclick="appendValue('/')">÷</button>
         <button class="btn-gray" onclick="appendValue('*')">×</button>
         <button class="btn-orange" onclick="appendValue('-')">−</button>
 
+        <!-- Row 2 -->
         <button class="btn-dark" onclick="appendValue('7')">7</button>
         <button class="btn-dark" onclick="appendValue('8')">8</button>
         <button class="btn-dark" onclick="appendValue('9')">9</button>
         <button class="btn-orange" onclick="appendValue('+')">+</button>
 
+        <!-- Row 3 -->
         <button class="btn-dark" onclick="appendValue('4')">4</button>
         <button class="btn-dark" onclick="appendValue('5')">5</button>
         <button class="btn-dark" onclick="appendValue('6')">6</button>
         <button class="btn-orange" onclick="calculate()">=</button>
 
+        <!-- Row 4 -->
         <button class="btn-dark" onclick="appendValue('1')">1</button>
         <button class="btn-dark" onclick="appendValue('2')">2</button>
         <button class="btn-dark" onclick="appendValue('3')">3</button>
+
+        <!-- Last Row -->
         <button class="btn-dark zero" onclick="appendValue('0')">0</button>
         <button class="btn-dark" onclick="appendValue('.')">.</button>
       </div>
     </div>
 
-    <!-- Scientific Calculator Placeholder -->
+    <!-- Scientific Calculator -->
     <div class="calculator hidden" id="scientific">
-  <input type="text" id="sciDisplay"  disabled />
-  <div class="buttons">
-    <button class="btn-gray" onclick="clearSci()">C</button>
-    <button class="btn-dark" onclick="appendSci('Math.sin(')">sin</button>
-    <button class="btn-dark" onclick="appendSci('Math.cos(')">cos</button>
-    <button class="btn-dark" onclick="appendSci('Math.tan(')">tan</button>
+      <input type="text" id="sciDisplay" disabled />
+      <div class="buttons">
+        <!-- First Row -->
+        <button class="btn-gray" onclick="clearSci()">C</button>
+        <button class="btn-dark" onclick="appendSci('Math.sin(')">sin</button>
+        <button class="btn-dark" onclick="appendSci('Math.cos(')">cos</button>
+        <button class="btn-dark" onclick="appendSci('Math.tan(')">tan</button>
 
-    <button class="btn-dark" onclick="appendSci('Math.log(')">log</button>
-    <button class="btn-dark" onclick="appendSci('Math.sqrt(')">√</button>
-    <button class="btn-dark" onclick="appendSci('Math.pow(')">xʸ</button>
-    <button class="btn-dark" onclick="appendSci('Math.PI')">π</button>
+        <!-- Second Row -->
+        <button class="btn-dark" onclick="appendSci('Math.log(')">log</button>
+        <button class="btn-dark" onclick="appendSci('Math.sqrt(')">√</button>
+        <button class="btn-dark" onclick="appendSci('Math.pow(')">xʸ</button>
+        <button class="btn-dark" onclick="appendSci('Math.PI')">π</button>
 
-    <button class="btn-dark" onclick="appendSci('Math.E')">e</button>
-    <button class="btn-dark" onclick="appendSci('(')">(</button>
-    <button class="btn-dark" onclick="appendSci(')')">)</button>
-    <button class="btn-orange" onclick="calcSci()">=</button>
+        <!-- Third Row -->
+        <button class="btn-dark" onclick="appendSci('Math.E')">e</button>
+        <button class="btn-dark" onclick="appendSci('(')">(</button>
+        <button class="btn-dark" onclick="appendSci(')')">)</button>
+        <button class="btn-orange" onclick="calcSci()">=</button>
 
-    <button class="btn-dark" onclick="appendSci('7')">7</button>
-    <button class="btn-dark" onclick="appendSci('8')">8</button>
-    <button class="btn-dark" onclick="appendSci('9')">9</button>
-    <button class="btn-dark" onclick="appendSci('/')">÷</button>
+        <!-- Numbers & Operators -->
+        <button class="btn-dark" onclick="appendSci('7')">7</button>
+        <button class="btn-dark" onclick="appendSci('8')">8</button>
+        <button class="btn-dark" onclick="appendSci('9')">9</button>
+        <button class="btn-dark" onclick="appendSci('/')">÷</button>
 
-    <button class="btn-dark" onclick="appendSci('4')">4</button>
-    <button class="btn-dark" onclick="appendSci('5')">5</button>
-    <button class="btn-dark" onclick="appendSci('6')">6</button>
-    <button class="btn-dark" onclick="appendSci('*')">×</button>
+        <button class="btn-dark" onclick="appendSci('4')">4</button>
+        <button class="btn-dark" onclick="appendSci('5')">5</button>
+        <button class="btn-dark" onclick="appendSci('6')">6</button>
+        <button class="btn-dark" onclick="appendSci('*')">×</button>
 
-    <button class="btn-dark" onclick="appendSci('1')">1</button>
-    <button class="btn-dark" onclick="appendSci('2')">2</button>
-    <button class="btn-dark" onclick="appendSci('3')">3</button>
-    <button class="btn-dark" onclick="appendSci('-')">−</button>
+        <button class="btn-dark" onclick="appendSci('1')">1</button>
+        <button class="btn-dark" onclick="appendSci('2')">2</button>
+        <button class="btn-dark" onclick="appendSci('3')">3</button>
+        <button class="btn-dark" onclick="appendSci('-')">−</button>
 
-    <button class="btn-dark zero" onclick="appendSci('0')">0</button>
-    <button class="btn-dark" onclick="appendSci('.')">.</button>
-    <button class="btn-dark" onclick="appendSci('+')">+</button>
-  </div>
-</div>
+        <button class="btn-dark zero" onclick="appendSci('0')">0</button>
+        <button class="btn-dark" onclick="appendSci('.')">.</button>
+        <button class="btn-dark" onclick="appendSci('+')">+</button>
+      </div>
+    </div>
 
     <!-- Conversion Calculator -->
-<div class="calculator hidden" id="conversion">
-  <h3 style="text-align:center; color:white;">Conversion Calculator</h3>
+    <div class="calculator hidden" id="conversion">
+      <h3 style="text-align:center; color:white;">Conversion Calculator</h3>
 
-  <!-- Temperature Conversion -->
-  <div class="conversion-box">
-    <label for="celsius">Celsius:</label>
-    <input type="number" id="celsius" oninput="convertCtoF()" />
-    <label for="fahrenheit">Fahrenheit:</label>
-    <input type="number" id="fahrenheit" oninput="convertFtoC()" />
-  </div>
+      <!-- Temperature Conversion -->
+      <div class="conversion-box">
+        <label for="celsius">Celsius:</label>
+        <input type="number" id="celsius" oninput="convertCtoF()" />
+        <label for="fahrenheit">Fahrenheit:</label>
+        <input type="number" id="fahrenheit" oninput="convertFtoC()" />
+      </div>
 
-  <!-- Length Conversion -->
-  <div class="conversion-box">
-    <label for="meters">Meters:</label>
-    <input type="number" id="meters" oninput="convertMtoKm()" />
-    <label for="kilometers">Kilometers:</label>
-    <input type="number" id="kilometers" oninput="convertKmtoM()" />
-  </div>
-</div>
+      <!-- Length Conversion -->
+      <div class="conversion-box">
+        <label for="meters">Meters:</label>
+        <input type="number" id="meters" oninput="convertMtoKm()" />
+        <label for="kilometers">Kilometers:</label>
+        <input type="number" id="kilometers" oninput="convertKmtoM()" />
+      </div>
+    </div>
 
     <script>
+      // =======================
+      // BASIC CALCULATOR LOGIC
+      // =======================
       let display = document.getElementById("display");
-
-      // Temperature Conversion
-function convertCtoF() {
-  let c = document.getElementById("celsius").value;
-  if (c !== "") {
-    document.getElementById("fahrenheit").value = (c * 9/5 + 32).toFixed(2);
-  } else {
-    document.getElementById("fahrenheit").value = "";
-  }
-}
-
-function convertFtoC() {
-  let f = document.getElementById("fahrenheit").value;
-  if (f !== "") {
-    document.getElementById("celsius").value = ((f - 32) * 5/9).toFixed(2);
-  } else {
-    document.getElementById("celsius").value = "";
-  }
-}
-
-// Length Conversion
-function convertMtoKm() {
-  let m = document.getElementById("meters").value;
-  if (m !== "") {
-    document.getElementById("kilometers").value = (m / 1000).toFixed(3);
-  } else {
-    document.getElementById("kilometers").value = "";
-  }
-}
-
-function convertKmtoM() {
-  let km = document.getElementById("kilometers").value;
-  if (km !== "") {
-    document.getElementById("meters").value = (km * 1000).toFixed(2);
-  } else {
-    document.getElementById("meters").value = "";
-  }
-}
-
-
-      let sciDisplay = document.getElementById("sciDisplay");
-
-function appendSci(val) {
-  sciDisplay.value += val;
-}
-
-function clearSci() {
-  sciDisplay.value = "";
-}
-
-function calcSci() {
-  try {
-    sciDisplay.value = eval(sciDisplay.value);
-  } catch {
-    sciDisplay.value = "Error";
-  }
-}
 
       function appendValue(val) {
         display.value += val;
       }
-
       function clearDisplay() {
         display.value = "";
       }
-
       function calculate() {
         try {
-          display.value = eval(display.value);
+          display.value = eval(display.value); // Evaluate input
         } catch {
-          display.value = "Error";
+          display.value = "Error"; // Show error if invalid
         }
       }
 
-      // Switch Modes
+      // =======================
+      // SCIENTIFIC CALCULATOR LOGIC
+      // =======================
+      let sciDisplay = document.getElementById("sciDisplay");
+
+      function appendSci(val) {
+        sciDisplay.value += val;
+      }
+      function clearSci() {
+        sciDisplay.value = "";
+      }
+      function calcSci() {
+        try {
+          sciDisplay.value = eval(sciDisplay.value);
+        } catch {
+          sciDisplay.value = "Error";
+        }
+      }
+
+      // =======================
+      // CONVERSION CALCULATOR LOGIC
+      // =======================
+
+      // Celsius → Fahrenheit
+      function convertCtoF() {
+        let c = document.getElementById("celsius").value;
+        if (c !== "") {
+          document.getElementById("fahrenheit").value = (c * 9/5 + 32).toFixed(2);
+        } else {
+          document.getElementById("fahrenheit").value = "";
+        }
+      }
+
+      // Fahrenheit → Celsius
+      function convertFtoC() {
+        let f = document.getElementById("fahrenheit").value;
+        if (f !== "") {
+          document.getElementById("celsius").value = ((f - 32) * 5/9).toFixed(2);
+        } else {
+          document.getElementById("celsius").value = "";
+        }
+      }
+
+      // Meters → Kilometers
+      function convertMtoKm() {
+        let m = document.getElementById("meters").value;
+        if (m !== "") {
+          document.getElementById("kilometers").value = (m / 1000).toFixed(3);
+        } else {
+          document.getElementById("kilometers").value = "";
+        }
+      }
+
+      // Kilometers → Meters
+      function convertKmtoM() {
+        let km = document.getElementById("kilometers").value;
+        if (km !== "") {
+          document.getElementById("meters").value = (km * 1000).toFixed(2);
+        } else {
+          document.getElementById("meters").value = "";
+        }
+      }
+
+      // =======================
+      // MODE SWITCHING
+      // =======================
       function showMode(mode) {
+        // Hide all calculators
         document.getElementById("basic").classList.add("hidden");
         document.getElementById("scientific").classList.add("hidden");
         document.getElementById("conversion").classList.add("hidden");
 
+        // Show the selected one
         document.getElementById(mode).classList.remove("hidden");
       }
 
-      // Theme Toggle
+      // =======================
+      // THEME TOGGLE
+      // =======================
       function toggleTheme() {
         document.body.classList.toggle("dark");
         document.body.classList.toggle("light");
